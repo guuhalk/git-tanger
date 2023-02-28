@@ -1,32 +1,38 @@
 <div class="container">
   <div class="grid">
-    <div class="col-8 md:col-8 lg:col-8 ">
+    <div class="col-12 sm:col-12 md:col-8 lg:col-8 ">
 
-      <div class="inpt">
-        <label>Caminho Projeto</label>
-        <input type="file" pInputText class="p-inputtext-sm" webkitdirectory = "true" directory />
+      <div class="card">
 
-      </div>
+        <div class="formgrid grid">
+            <div class="field col-12 md:col-6">
+                <label for="firstname6">Branch Referencia</label>
+                <input id="firstname6" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            </div>
+            <div class="field col-12 md:col-6">
+                <label for="lastname6">Nova Branch</label>
+                <input id="lastname6" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            </div>
+            <div class="field col-12">
+                <label for="address">Caminho do Projeto</label>
+                <textarea id="address" type="text" rows="4" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
+            </div>
+            <div class="field col-12 md:col-6">
+                <label for="city">Usuario</label>
+                <input id="city" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            </div>
 
-      <div class="inpt">
-        <label>Branch Origem </label>
-        <input type="text" pInputText class="p-inputtext-sm"  />
-      </div>
+            <div class="field col-12 md:col-6">
+                <label for="zip">Credencial</label>
+                <input id="zip" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            </div>
 
-      <div class="inpt">
-        <label>Nova branch </label>
-        <input type="text" pInputText class="p-inputtext-sm"  />
-      </div>
+            <div class="field col-12 md:col-12" >
+              <button  pButton pRipple type="button" label="Criar" class="p-button-raised" style="background: #FF5722; border: none; width: 100%; margin-top: 5%;"></button>
+            </div>
 
-      <div class="inpt">
-        <label>Usuario </label>
-        <input type="text" pInputText class="p-inputtext-sm"  />
-      </div>
-
-      <div class="inpt">
-        <label>Crendencial </label>
-        <input type="text" pInputText class="p-inputtext-sm"  />
-      </div>
+          </div>
+    </div>
 
 
     </div>
