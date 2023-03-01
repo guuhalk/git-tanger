@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MainComponent } from './main.component';
 import {InputTextModule} from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -10,7 +12,10 @@ import { ButtonModule } from 'primeng/button';
   imports: [
     CommonModule,
     InputTextModule,
-    ButtonModule
+    ButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
 })
 export class MainModule {}

@@ -4,31 +4,47 @@
 
       <div class="card">
 
-        <div class="formgrid grid">
+        <div class="formgrid grid" [formGroup]="formInput">
             <div class="field col-12 md:col-6">
                 <label for="firstname6">Branch Referencia</label>
-                <input id="firstname6" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                <input id="firstname6" type="text" [formGroup]="formInput" formControlName="baseBranch" [(ngModel)]="baseBranch" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"  >
+                <div *ngIf="formInput.get('baseBranch')?.errors?.['required'] && formInput.get('baseBranch')?.touched">
+                  Branch Referencia obrigatório
+                </div>
             </div>
+
             <div class="field col-12 md:col-6">
                 <label for="lastname6">Nova Branch</label>
-                <input id="lastname6" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                <input id="lastname6"  [(ngModel)]="newBranch" [formGroup]="formInput" formControlName="newBranch" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                <div *ngIf="formInput.get('newBranch')?.errors?.['required'] && formInput.get('newBranch')?.touched">
+                  Nova branch obrigatório
+                </div>
             </div>
             <div class="field col-12">
                 <label for="address">Caminho do Projeto</label>
-                <textarea id="address" type="text" rows="4" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
+                <textarea id="address" [(ngModel)]="path" [formGroup]="formInput" formControlName="path" type="text" rows="4" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
+                <div *ngIf="formInput.get('path')?.errors?.['required'] && formInput.get('path')?.touched">
+                  Caminho do Projeto obrigatório
+                </div>
             </div>
             <div class="field col-12 md:col-6">
                 <label for="city">Usuario</label>
-                <input id="city" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                <input id="city" type="text" [(ngModel)]="user" [formGroup]="formInput" formControlName="user" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                <div *ngIf="formInput.get('user')?.errors?.['required'] && formInput.get('user')?.touched">
+                  Usuario obrigatório
+                </div>
             </div>
 
             <div class="field col-12 md:col-6">
                 <label for="zip">Credencial</label>
-                <input id="zip" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                <input id="zip" type="text" [(ngModel)]="credentials" [formGroup]="formInput" formControlName="credentials" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                <div *ngIf="formInput.get('credentials')?.errors?.['required'] && formInput.get('credentials')?.touched">
+                  Credencial obrigatório
+                </div>
             </div>
 
             <div class="field col-12 md:col-12" >
-              <button  pButton pRipple type="button" label="Criar" class="p-button-raised" style="background: #FF5722; border: none; width: 10%; margin-top: 5%;"></button>
+              <button  pButton pRipple type="button" (click)="submit()" [disabled]="!formInput.valid" label="Criar" class="p-button-raised" style="background: #FF5722; border: none; width: 10%; margin-top: 5%;"></button>
             </div>
 
           </div>
