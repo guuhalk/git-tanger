@@ -27,25 +27,10 @@
                   Caminho do Projeto obrigatório
                 </div>
             </div>
-            <div class="field col-12 md:col-6">
-                <label for="city">Usuario</label>
-                <input id="city" type="text" [(ngModel)]="user" [formGroup]="formInput" formControlName="user" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-                <div style="font-size: 83%;color: #FF5722;margin-left: 2%;margin-top: 2%;border-color: var(#FF5722) !important;" *ngIf="formInput.get('user')?.errors?.['required'] && formInput.get('user')?.touched">
-                  Usuario obrigatório
-                </div>
-            </div>
-
-            <div class="field col-12 md:col-6">
-                <label for="zip">Credencial</label>
-                <input id="zip" type="text" [(ngModel)]="credentials" [formGroup]="formInput" formControlName="credentials" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-                <div style="font-size: 83%;color: #FF5722;margin-left: 2%;margin-top: 2%;border-color: var(#FF5722) !important;" *ngIf="formInput.get('credentials')?.errors?.['required'] && formInput.get('credentials')?.touched">
-                  Credencial obrigatório
-                </div>
-            </div>
 
             <div class="field col-12 md:col-12" >
-              <button  pButton pRipple type="button" (click)="submit()" [disabled]="!formInput.valid" label="Criar" class="p-button-raised" style="background: #FF5722; border: none; width: 20%; margin-top: 5%;"></button>
-              <button  pButton pRipple type="button" disabled (click)="redirectCherry()"  label="Cherry-Pick " class="p-button-raised" style="background: #FF5722;border: none; float:right; width: 20%;margin-left: 30%;margin-top: 5%;"></button>
+              <button  pButton pRipple type="button" (click)="submit()" [disabled]="!formInput.valid" label="Executar" class="p-button-raised" style="background: #FF5722; border: none; width: 20%; margin-top: 5%;"></button>
+              <button  pButton pRipple type="button" (click)="redirectInicio()"  label="Inicio" class="p-button-raised" style="background: #FF5722;border: none; float:right; width: 20%;margin-left: 30%;margin-top: 5%;"></button>
 
             </div>
 
@@ -57,7 +42,7 @@
 
     <div class="col-4 md:col-4 lg:col-4">
       <div class="container-card">
-        <p-card header="Log " styleClass="cardMsg"  >
+        <p-card header="Log " styleClass="cardMsg">
           <p-progressSpinner *ngIf="progressTime" [style]="{width: '50px', height: '50px', color:'#FF5722', stroke:'#FF5722'}"></p-progressSpinner>
           <h5 style="white-space: pre-line;" >{{responseMessage}}</h5>
         </p-card>

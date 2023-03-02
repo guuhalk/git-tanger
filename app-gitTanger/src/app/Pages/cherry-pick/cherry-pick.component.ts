@@ -1,21 +1,20 @@
 import { Router } from '@angular/router';
-import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { PageService } from 'src/app/Service/page.service';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  selector: 'app-cherry-pick',
+  templateUrl: './cherry-pick.component.html',
+  styleUrls: ['./cherry-pick.component.scss']
 })
-export class MainComponent{
+export class CherryPickComponent {
 
   formInput!: FormGroup
   baseBranch:string
   newBranch:string
   path:string
-  user:string
-  credentials:string
+
   responseMessage:any = '';
   progressTime:boolean = false;
 
@@ -24,24 +23,19 @@ export class MainComponent{
     this.formInput = this.formBuilder.group({
       baseBranch: new FormControl("",[Validators.required]),
       newBranch: new FormControl("",[Validators.required]),
-      path: new FormControl("",[Validators.required]),
-      user: new FormControl("",[Validators.required]),
-      credentials : new FormControl("",[Validators.required]),
+      path: new FormControl("",[Validators.required])
     });
-
   }
 
   constructor( private pageService: PageService ,private formBuilder: FormBuilder, private router: Router) {
     this.baseBranch = ""
     this.newBranch= ""
     this.path= ""
-    this.user= ""
-    this.credentials= ""
 
    }
 
-   redirectCherry(){
-    this.router.navigateByUrl("/cherry-pick")
+   redirectInicio(){
+    this.router.navigateByUrl("/inicio")
    }
 
   submit(){
@@ -52,7 +46,7 @@ export class MainComponent{
       console.log("Formulário inválido");
       return;
     }
-    this.pageService.submit(this.newBranch,this.baseBranch ,this.path, this.user, this.credentials).subscribe((m)=>{
+    this.pageService.submitCherry(this.newBranch,this.baseBranch ,this.path).subscribe((m)=>{
 
 
 
@@ -74,10 +68,5 @@ export class MainComponent{
     }
     );
   }
-
-
-
-
-
 
 }
