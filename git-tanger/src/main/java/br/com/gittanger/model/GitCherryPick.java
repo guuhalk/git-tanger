@@ -3,11 +3,8 @@ package br.com.gittanger.model;
 import lombok.Data;
 
 @Data
-public class GitTanger {
-	private String newBranch;
+public class GitCherryPick {
+	private String originBranch;
 	private String baseBranch;
 	private String path;
-	private String user;
-	private String credentials;
-
 }

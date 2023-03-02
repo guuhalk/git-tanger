@@ -7,26 +7,25 @@ import org.eclipse.jgit.api.CheckoutCommand;
 import org.eclipse.jgit.api.CreateBranchCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.PullCommand;
-import org.eclipse.jgit.api.ResetCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 
-import br.com.gittanger.model.GitTanger;
+import br.com.gittanger.model.GitBranch;
 
 public class OperationsService {
 
 	private Git git;
 	private Repository getRepoProject;
 
-	public OperationsService(GitTanger gitTanger) throws IOException, GitAPIException {
-		this.getRepoProject = new FileRepositoryBuilder().setGitDir(new File(gitTanger.getPath().concat("\\.git"))).build();
+	public OperationsService(GitBranch gitBranch) throws IOException, GitAPIException {
+		this.getRepoProject = new FileRepositoryBuilder().setGitDir(new File(gitBranch.getPath().concat("\\.git"))).build();
 		this.git = new Git(getRepoProject);
 	}
 
-	public void CheckoutProject(String branch) {
+	public void checkoutProject(String branch) {
 		try {
 			CheckoutCommand checkoutCommand = git.checkout().setName(branch);
 			checkoutCommand.call();
@@ -57,16 +56,6 @@ public class OperationsService {
 		}
 	}
 	
-	public void resetProject() {
-		try {
-			ResetCommand resetCommand = git.reset();
-			resetCommand.call();
-			
-		} catch (GitAPIException e) {
-			e.printStackTrace();
-		}
-	}
-
 	public CredentialsProvider authenticate(String user, String credentials){
 		return new UsernamePasswordCredentialsProvider(user, credentials);
 	}
