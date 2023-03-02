@@ -7,6 +7,7 @@ import org.eclipse.jgit.api.CheckoutCommand;
 import org.eclipse.jgit.api.CherryPickCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
@@ -36,12 +37,9 @@ public class OperationCherryPickService {
 	public String cherryPickProject(GitCherryPick gitCherryPick) throws IOException {
 		try {
 			Ref ref = getRepoProject.getRef(gitCherryPick.getBaseBranch());
+			ObjectId id = ref.getObjectId();
 
-			CheckoutCommand checkoutCommand = git.checkout().setName(gitCherryPick.getOriginBranch());
-			checkoutCommand.call();
-
-			CherryPickCommand cherryPickCommand = git.cherryPick().include(ref);
-
+			CherryPickCommand cherryPickCommand = git.cherryPick().include(id);
 			cherryPickCommand.call();
 			
 			return "Cherry pick feito com sucesso da branch " + gitCherryPick.getBaseBranch() +

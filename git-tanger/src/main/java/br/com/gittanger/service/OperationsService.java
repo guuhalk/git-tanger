@@ -58,7 +58,7 @@ public class OperationsService {
 
 		} catch (GitAPIException e) {
 			e.printStackTrace();
-			return "Erro ao criar a branch: " + branch;
+			return "Erro ao criar a branch: " + branch + " " + e.getMessage();
 		}
 	}
 	

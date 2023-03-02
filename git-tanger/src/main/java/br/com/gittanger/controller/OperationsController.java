@@ -7,6 +7,7 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.api.errors.InvalidRefNameException;
 import org.eclipse.jgit.api.errors.RefAlreadyExistsException;
 import org.eclipse.jgit.api.errors.RefNotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +25,7 @@ import br.com.gittanger.service.OperationsService;
 public class OperationsController {
 
 	@PostMapping(value = "createBranch")
-	public String createBranchDevelop(@RequestBody GitBranch gitBranch) throws IOException, RefAlreadyExistsException,
+	public ResponseEntity<String> createBranchDevelop(@RequestBody GitBranch gitBranch) throws IOException, RefAlreadyExistsException,
 			RefNotFoundException, InvalidRefNameException, CheckoutConflictException, GitAPIException {
 
 		String returnMessage = "";
@@ -41,7 +42,7 @@ public class OperationsController {
 		returnMessage = operations.checkoutProject(gitBranch.getNewBranch());
 		sb.append(returnMessage).append("\n");
 		
-		return sb.toString();
+		return ResponseEntity.ok(sb.toString());
  
 	}
 	
