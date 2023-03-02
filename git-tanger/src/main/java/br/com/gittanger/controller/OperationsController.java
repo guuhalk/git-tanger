@@ -24,24 +24,43 @@ import br.com.gittanger.service.OperationsService;
 public class OperationsController {
 
 	@PostMapping(value = "createBranch")
-	public void createBranchDevelop(@RequestBody GitBranch gitBranch) throws IOException, RefAlreadyExistsException,
+	public String createBranchDevelop(@RequestBody GitBranch gitBranch) throws IOException, RefAlreadyExistsException,
 			RefNotFoundException, InvalidRefNameException, CheckoutConflictException, GitAPIException {
 
+		String returnMessage = "";
+		StringBuilder sb = new StringBuilder();
+		
 		OperationsService operations = new OperationsService(gitBranch);
-		operations.checkoutProject(gitBranch.getBaseBranch());
-		operations.pullProject(gitBranch.getUser(), gitBranch.getCredentials());
-		operations.createBranch(gitBranch.getNewBranch());
-		operations.checkoutProject(gitBranch.getNewBranch());
+		
+		returnMessage =  operations.checkoutProject(gitBranch.getBaseBranch());
+		sb.append(returnMessage).append("\n");
+		returnMessage = operations.pullProject(gitBranch.getUser(), gitBranch.getCredentials());
+		sb.append(returnMessage).append("\n");
+		returnMessage = operations.createBranch(gitBranch.getNewBranch());
+		sb.append(returnMessage).append("\n");
+		returnMessage = operations.checkoutProject(gitBranch.getNewBranch());
+		sb.append(returnMessage).append("\n");
+		
+		return sb.toString();
  
 	}
 	
 	@PostMapping(value = "createCherryPick")
-	public void createCherryPick(@RequestBody GitCherryPick gitCherryPick) throws IOException, RefAlreadyExistsException,
+	public String createCherryPick(@RequestBody GitCherryPick gitCherryPick) throws IOException, RefAlreadyExistsException,
 			RefNotFoundException, InvalidRefNameException, CheckoutConflictException, GitAPIException {
 
+		String returnMessage = "";
+		StringBuilder sb = new StringBuilder();
+		
 		OperationCherryPickService operations = new OperationCherryPickService(gitCherryPick);
+		
 		operations.checkoutProject(gitCherryPick.getOriginBranch());
+		sb.append(returnMessage).append("\n");
+		
 		operations.cherryPickProject(gitCherryPick);
+		sb.append(returnMessage).append("\n");
+		
+		return returnMessage;
 
 	}
 	

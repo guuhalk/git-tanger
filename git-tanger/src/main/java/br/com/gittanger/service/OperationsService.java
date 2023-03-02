@@ -25,34 +25,40 @@ public class OperationsService {
 		this.git = new Git(getRepoProject);
 	}
 
-	public void checkoutProject(String branch) {
+	public String checkoutProject(String branch) {
 		try {
 			CheckoutCommand checkoutCommand = git.checkout().setName(branch);
 			checkoutCommand.call();
+			return "Checkout executado com sucesso para branch: " + branch;
 
 		} catch (GitAPIException e) {
 			e.printStackTrace();
+			return "Erro ao fazer checkout para branch: " + branch ;
 		}
 	}
 
-	public void pullProject(String user, String credentials) {
+	public String pullProject(String user, String credentials) {
 		try {
 			PullCommand pullCommand = git.pull();
 			pullCommand.setCredentialsProvider(authenticate(user, credentials));
 			pullCommand.call();
+			return "Branch atualizada com sucesso";
 
 		} catch (GitAPIException e) {
 			e.printStackTrace();
+			return "Erro ao atualizar a branch.";
 		}
 	}
 
-	public void createBranch(String branch) {
+	public String createBranch(String branch) {
 		try {
 			CreateBranchCommand branchCommand = git.branchCreate().setName(branch);
 			branchCommand.call();
+			return "Branch: " + branch + ", criada com sucesso";
 
 		} catch (GitAPIException e) {
 			e.printStackTrace();
+			return "Erro ao criar a branch: " + branch;
 		}
 	}
 	
